@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Soul — Suniye, Samjhiye, Mahsoos Kariye</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lavender: #C9A8E0;
+    --lavender-dark: #9B72C8;
+    --lavender-soft: #EDE0F8;
+    --peach: #F2C4A0;
+    --peach-soft: #FDF0E8;
+    --gold: #E8B84B;
+    --gold-soft: #FFF3D0;
+    --purple-deep: #6B4A9B;
+    --cream: #FDF8FF;
+    --text-dark: #3A2A4E;
+    --text-mid: #6B5B7E;
+    --text-light: #A090B8;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', 'Noto Sans Devanagari', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ——— NAVBAR ——— */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(253,248,255,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(201,168,224,0.2);
+    padding: 0.8rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 30px rgba(107,74,155,0.1); }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .nav-logo img {
+    width: 42px; height: 42px; border-radius: 50%;
+    box-shadow: 0 2px 12px rgba(155,114,200,0.3);
+  }
+  .nav-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 600;
+    color: var(--purple-deep);
+    letter-spacing: 0.5px;
+  }
+
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none; align-items: center;
+  }
+  .nav-links a {
+    text-decoration: none; color: var(--text-mid);
+    font-size: 0.88rem; font-weight: 600; letter-spacing: 0.3px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--purple-deep); }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--lavender-dark), var(--purple-deep));
+    color: white !important;
+    padding: 0.5rem 1.3rem; border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(107,74,155,0.3);
+    transition: transform 0.2s, box-shadow 0.2s !important;
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(107,74,155,0.4) !important; color: white !important; }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  }
+  .hamburger span {
+    width: 24px; height: 2px;
+    background: var(--purple-deep); border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  /* ——— HERO ——— */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #f8f0ff 0%, #fdf0e8 40%, #ede0f8 70%, #e8d5f5 100%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 7rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(201,168,224,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -80px; left: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(242,196,160,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float 10s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 750px; }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(201,168,224,0.25);
+    border: 1px solid rgba(155,114,200,0.3);
+    color: var(--purple-deep);
+    padding: 0.4rem 1.2rem; border-radius: 50px;
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .hero-hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    color: var(--text-light);
+    font-weight: 400; margin-bottom: 0.5rem;
+    animation: fadeUp 0.9s ease forwards;
+    opacity: 0; animation-delay: 0.1s; animation-fill-mode: forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    animation: fadeUp 1s ease forwards;
+    opacity: 0; animation-delay: 0.2s; animation-fill-mode: forwards;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--purple-deep);
+    background: linear-gradient(135deg, var(--lavender-dark), var(--purple-deep));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    color: var(--text-mid); line-height: 1.8;
+    margin-bottom: 0.8rem;
+    animation: fadeUp 1s ease forwards;
+    opacity: 0; animation-delay: 0.35s; animation-fill-mode: forwards;
+  }
+
+  .hero-sub-hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 1rem; color: var(--text-light);
+    margin-bottom: 2rem; font-style: italic;
+    animation: fadeUp 1s ease forwards;
+    opacity: 0; animation-delay: 0.45s; animation-fill-mode: forwards;
+  }
+
+  .hero-buttons {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 1s ease forwards;
+    opacity: 0; animation-delay: 0.55s; animation-fill-mode: forwards;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--lavender-dark) 0%, var(--purple-deep) 100%);
+    color: white; padding: 0.9rem 2.2rem;
+    border-radius: 50px; text-decoration: none;
+    font-weight: 700; font-size: 0.95rem; letter-spacing: 0.3px;
+    box-shadow: 0 8px 25px rgba(107,74,155,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(107,74,155,0.45); }
+
+  .btn-secondary {
+    background: white; color: var(--purple-deep);
+    padding: 0.9rem 2.2rem; border-radius: 50px;
+    text-decoration: none; font-weight: 700; font-size: 0.95rem;
+    border: 2px solid rgba(155,114,200,0.4);
+    transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-secondary:hover { border-color: var(--purple-deep); background: var(--lavender-soft); }
+
+  .hero-stats {
+    display: flex; justify-content: center; gap: 3rem; margin-top: 3.5rem;
+    animation: fadeUp 1s ease forwards;
+    opacity: 0; animation-delay: 0.7s; animation-fill-mode: forwards;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 600; color: var(--purple-deep);
+    display: block;
+  }
+  .stat-label { font-size: 0.75rem; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ——— TRUST BAR ——— */
+  .trust-bar {
+    background: white;
+    border-top: 1px solid rgba(201,168,224,0.2);
+    border-bottom: 1px solid rgba(201,168,224,0.2);
+    padding: 1.2rem 2rem;
+    display: flex; align-items: center; justify-content: center;
+    gap: 3rem; flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.82rem; font-weight: 700;
+    color: var(--text-mid); letter-spacing: 0.3px;
+  }
+  .trust-item .icon { font-size: 1.1rem; }
+
+  /* ——— SECTIONS ——— */
+  section { padding: 5rem 2rem; }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--lavender-dark);
+    background: rgba(201,168,224,0.15);
+    padding: 0.3rem 1rem; border-radius: 50px;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300; color: var(--text-dark);
+    line-height: 1.2; margin-bottom: 0.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--purple-deep); }
+
+  .section-hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 0.95rem; color: var(--text-light);
+    margin-bottom: 1rem; font-style: italic;
+  }
+
+  .section-sub {
+    font-size: 1rem; color: var(--text-mid);
+    line-height: 1.8; max-width: 580px;
+  }
+
+  /* ——— ABOUT ——— */
+  .about { background: white; }
+  .about-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-card {
+    background: linear-gradient(145deg, var(--lavender-soft), var(--peach-soft));
+    border-radius: 30px; padding: 3rem 2.5rem;
+    text-align: center; position: relative;
+    box-shadow: 0 20px 60px rgba(107,74,155,0.12);
+  }
+  .about-logo-wrap {
+    width: 130px; height: 130px; margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    box-shadow: 0 10px 40px rgba(155,114,200,0.3);
+    overflow: hidden;
+  }
+  .about-logo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-style: italic;
+    color: var(--purple-deep); line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+  .about-quote-hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 0.9rem; color: var(--text-light);
+  }
+  .about-float {
+    position: absolute; bottom: -20px; right: -20px;
+    background: white; border-radius: 20px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 10px 30px rgba(107,74,155,0.15);
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .about-float-icon { font-size: 1.5rem; }
+  .about-float-text { font-size: 0.8rem; font-weight: 700; color: var(--text-dark); line-height: 1.4; }
+  .about-float-text span { display: block; color: var(--text-light); font-weight: 400; font-size: 0.72rem; }
+
+  .about-content { }
+  .about-content .section-title { margin-bottom: 1.2rem; }
+  .about-feature {
+    display: flex; gap: 1rem; margin-top: 1.5rem; align-items: flex-start;
+  }
+  .about-feature-icon {
+    width: 44px; height: 44px; border-radius: 14px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--lavender-soft), var(--peach-soft));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(107,74,155,0.1);
+  }
+  .about-feature-body h4 { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.2rem; }
+  .about-feature-body p { font-size: 0.85rem; color: var(--text-mid); line-height: 1.6; }
+
+  /* ——— SERVICES ——— */
+  .services {
+    background: linear-gradient(160deg, var(--cream), var(--lavender-soft));
+  }
+  .services-header { text-align: center; margin-bottom: 3.5rem; }
+  .services-header .section-sub { margin: 0 auto; }
+
+  .services-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: white; border-radius: 24px;
+    padding: 2rem; position: relative; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(107,74,155,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid rgba(201,168,224,0.2);
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 50px rgba(107,74,155,0.18);
+  }
+  .service-card.featured {
+    background: linear-gradient(145deg, var(--purple-deep), var(--lavender-dark));
+    color: white; border: none;
+  }
+  .service-card.featured .service-price,
+  .service-card.featured .service-name,
+  .service-card.featured .service-desc,
+  .service-card.featured .service-duration,
+  .service-card.featured .service-hindi,
+  .service-card.featured .service-badge {
+    color: rgba(255,255,255,0.9) !important;
+  }
+  .service-card.featured .service-price { color: white !important; }
+  .service-card.featured .service-features li { color: rgba(255,255,255,0.85) !important; }
+  .service-card.featured .service-features li::before { color: var(--gold) !important; }
+  .service-card.featured .service-btn {
+    background: white; color: var(--purple-deep);
+  }
+  .service-card.featured .popular-tag {
+    display: block;
+  }
+
+  .popular-tag {
+    display: none;
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    background: var(--gold); color: white;
+    font-size: 0.68rem; font-weight: 800;
+    padding: 0.3rem 0.8rem; border-radius: 50px;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  .service-emoji { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; color: var(--text-dark);
+    margin-bottom: 0.2rem;
+  }
+  .service-hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 0.82rem; color: var(--text-light);
+    margin-bottom: 0.8rem; font-style: italic;
+  }
+  .service-desc {
+    font-size: 0.85rem; color: var(--text-mid);
+    line-height: 1.7; margin-bottom: 1rem;
+  }
+  .service-duration {
+    font-size: 0.75rem; font-weight: 700;
+    color: var(--text-light); text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 1rem;
+  }
+  .service-features { list-style: none; margin-bottom: 1.5rem; }
+  .service-features li {
+    font-size: 0.82rem; color: var(--text-mid);
+    padding: 0.3rem 0; display: flex; gap: 0.5rem; align-items: flex-start;
+  }
+  .service-features li::before { content: '✦'; color: var(--lavender-dark); font-size: 0.7rem; margin-top: 2px; flex-shrink: 0; }
+  .service-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 600; color: var(--purple-deep);
+    margin-bottom: 1rem; line-height: 1;
+  }
+  .service-price sub { font-size: 1rem; font-weight: 400; }
+  .service-price small { font-size: 0.85rem; font-weight: 300; color: var(--text-light); display: block; }
+  .service-badge {
+    font-size: 0.72rem; color: var(--text-light);
+    margin-bottom: 1rem; display: block;
+  }
+  .service-btn {
+    display: block; text-align: center; text-decoration: none;
+    background: linear-gradient(135deg, var(--lavender-dark), var(--purple-deep));
+    color: white; padding: 0.75rem 1.5rem;
+    border-radius: 50px; font-weight: 700; font-size: 0.85rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(107,74,155,0.25);
+  }
+  .service-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(107,74,155,0.35); }
+
+  .services-note {
+    max-width: 700px; margin: 2.5rem auto 0;
+    background: white; border-radius: 20px;
+    padding: 1.5rem 2rem;
+    border: 1px solid rgba(201,168,224,0.3);
+    display: flex; gap: 1rem; align-items: flex-start;
+    box-shadow: 0 4px 20px rgba(107,74,155,0.06);
+  }
+  .services-note-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .services-note-text h4 { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.3rem; }
+  .services-note-text p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.7; }
+
+  /* ——— PRIVACY ——— */
+  .privacy { background: white; }
+  .privacy-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .privacy-cards { display: flex; flex-direction: column; gap: 1rem; }
+  .privacy-card {
+    background: linear-gradient(135deg, var(--lavender-soft), var(--peach-soft));
+    border-radius: 20px; padding: 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    border: 1px solid rgba(201,168,224,0.2);
+    transition: transform 0.2s;
+  }
+  .privacy-card:hover { transform: translateX(6px); }
+  .privacy-card-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: white; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    box-shadow: 0 4px 12px rgba(107,74,155,0.1);
+  }
+  .privacy-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.3rem; }
+  .privacy-card p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.6; }
+  .privacy-card .hindi-small {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 0.78rem; color: var(--text-light); margin-top: 0.2rem;
+  }
+
+  /* ——— TESTIMONIALS ——— */
+  .testimonials {
+    background: linear-gradient(160deg, #f8f0ff, #fdf0e8);
+  }
+  .testimonials-header { text-align: center; margin-bottom: 3rem; }
+  .testimonials-grid {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .testimonial-card {
+    background: white; border-radius: 24px; padding: 2rem;
+    box-shadow: 0 4px 20px rgba(107,74,155,0.08);
+    border: 1px solid rgba(201,168,224,0.15);
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; line-height: 0.8;
+    color: var(--lavender);
+    position: absolute; top: 1rem; right: 1.5rem;
+    opacity: 0.4;
+  }
+  .testimonial-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 0.8rem; }
+  .testimonial-text {
+    font-size: 0.9rem; color: var(--text-mid);
+    line-height: 1.8; margin-bottom: 1.2rem;
+    font-style: italic;
+  }
+  .testimonial-hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 0.8rem; color: var(--text-light);
+    font-style: italic; margin-bottom: 1rem; display: block;
+  }
+  .testimonial-author {
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .testimonial-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--lavender), var(--peach));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: white; font-weight: 700;
+  }
+  .testimonial-name { font-size: 0.85rem; font-weight: 700; color: var(--text-dark); }
+  .testimonial-location { font-size: 0.72rem; color: var(--text-light); }
+  .testimonial-badge {
+    display: inline-block; font-size: 0.65rem;
+    background: rgba(201,168,224,0.2); color: var(--purple-deep);
+    padding: 0.2rem 0.6rem; border-radius: 20px;
+    font-weight: 700; margin-top: 0.3rem; letter-spacing: 0.5px;
+  }
+  .anon-note {
+    text-align: center; margin-top: 1.5rem;
+    font-size: 0.78rem; color: var(--text-light);
+    font-style: italic;
+  }
+
+  /* ——— HOW IT WORKS ——— */
+  .how { background: white; }
+  .how-inner { max-width: 900px; margin: 0 auto; }
+  .how-header { text-align: center; margin-bottom: 3rem; }
+  .steps {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .step {
+    display: flex; gap: 2rem; align-items: flex-start;
+    position: relative; padding-bottom: 2.5rem;
+  }
+  .step:last-child { padding-bottom: 0; }
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute; left: 22px; top: 50px;
+    width: 2px; bottom: 0;
+    background: linear-gradient(to bottom, var(--lavender), transparent);
+  }
+  .step-num {
+    width: 46px; height: 46px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--lavender-dark), var(--purple-deep));
+    border-radius: 50%; color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.9rem;
+    box-shadow: 0 6px 18px rgba(107,74,155,0.3);
+    position: relative; z-index: 1;
+  }
+  .step-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600; color: var(--text-dark);
+    margin-bottom: 0.2rem; padding-top: 0.5rem;
+  }
+  .step-body .hindi-step {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 0.8rem; color: var(--text-light); margin-bottom: 0.4rem;
+  }
+  .step-body p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; }
+
+  /* ——— BOOKING ——— */
+  .booking {
+    background: linear-gradient(145deg, var(--purple-deep), #4a2d7a, var(--lavender-dark));
+    color: white; text-align: center;
+  }
+  .booking .section-label { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); }
+  .booking .section-title { color: white; }
+  .booking .section-hindi { color: rgba(255,255,255,0.7); }
+  .booking .section-sub { color: rgba(255,255,255,0.75); margin: 0 auto 2rem; }
+
+  .booking-form-wrap {
+    max-width: 680px; margin: 0 auto;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 28px; padding: 2.5rem;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; text-align: left; }
+  .form-group.full { grid-column: 1/-1; }
+  .form-group label {
+    font-size: 0.78rem; font-weight: 700;
+    color: rgba(255,255,255,0.8); letter-spacing: 0.5px;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 12px; padding: 0.75rem 1rem;
+    color: white; font-family: 'Nunito', sans-serif;
+    font-size: 0.88rem; outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.4); }
+  .form-group select option { background: var(--purple-deep); color: white; }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.18);
+  }
+  .form-group textarea { min-height: 90px; resize: vertical; }
+
+  .privacy-check {
+    display: flex; align-items: flex-start; gap: 0.8rem;
+    margin: 1rem 0; text-align: left;
+  }
+  .privacy-check input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; width: 16px; height: 16px; cursor: pointer; }
+  .privacy-check label { font-size: 0.8rem; color: rgba(255,255,255,0.75); line-height: 1.5; cursor: pointer; }
+
+  .form-submit {
+    width: 100%; padding: 1rem;
+    background: linear-gradient(135deg, var(--gold), #d4a030);
+    color: white; border: none; border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem; font-weight: 800;
+    cursor: pointer; letter-spacing: 0.3px;
+    box-shadow: 0 8px 25px rgba(232,184,75,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .form-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(232,184,75,0.5); }
+
+  .booking-note {
+    margin-top: 1.5rem; font-size: 0.78rem;
+    color: rgba(255,255,255,0.55);
+    display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+  }
+
+  /* ——— FAQ ——— */
+  .faq { background: var(--cream); }
+  .faq-inner { max-width: 700px; margin: 0 auto; }
+  .faq-header { text-align: center; margin-bottom: 2.5rem; }
+  .faq-item {
+    background: white; border-radius: 16px; margin-bottom: 0.8rem;
+    border: 1px solid rgba(201,168,224,0.2);
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(107,74,155,0.05);
+  }
+  .faq-q {
+    padding: 1.2rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; font-weight: 700; font-size: 0.9rem;
+    color: var(--text-dark);
+    transition: background 0.2s;
+  }
+  .faq-q:hover { background: var(--lavender-soft); }
+  .faq-q span { flex: 1; }
+  .faq-q .faq-hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 0.75rem; color: var(--text-light);
+    font-weight: 400; display: block; margin-top: 0.1rem;
+  }
+  .faq-icon { font-size: 1.2rem; color: var(--lavender-dark); transition: transform 0.3s; flex-shrink: 0; margin-left: 1rem; }
+  .faq-a {
+    padding: 0 1.5rem; max-height: 0;
+    overflow: hidden; transition: max-height 0.4s ease, padding 0.3s;
+    font-size: 0.87rem; color: var(--text-mid); line-height: 1.8;
+  }
+  .faq-item.open .faq-a { max-height: 300px; padding: 0 1.5rem 1.2rem; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  /* ——— FOOTER ——— */
+  footer {
+    background: var(--text-dark);
+    color: rgba(255,255,255,0.7);
+    padding: 3rem 2rem 2rem;
+  }
+  .footer-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 2.5rem;
+  }
+  .footer-brand .nav-logo-text { color: var(--lavender); }
+  .footer-tagline {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 0.88rem; color: rgba(255,255,255,0.5);
+    margin: 0.5rem 0 1rem;
+  }
+  .footer-desc { font-size: 0.82rem; line-height: 1.8; max-width: 280px; }
+  .footer-social { display: flex; gap: 0.8rem; margin-top: 1.2rem; }
+  .social-btn {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 1rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .social-btn:hover { background: rgba(201,168,224,0.3); transform: translateY(-2px); }
+  .footer-col h4 { font-size: 0.8rem; font-weight: 700; color: white; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.6rem; }
+  .footer-col ul li a { text-decoration: none; color: rgba(255,255,255,0.55); font-size: 0.83rem; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--lavender); }
+  .footer-bottom {
+    max-width: 1100px; margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    font-size: 0.75rem; color: rgba(255,255,255,0.35);
+  }
+  .footer-disclaimer { font-size: 0.73rem; color: rgba(255,255,255,0.3); max-width: 600px; line-height: 1.5; }
+
+  /* ——— FLOATING WHATSAPP ——— */
+  .whatsapp-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25D366;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; text-decoration: none;
+    box-shadow: 0 6px 25px rgba(37,211,102,0.45);
+    animation: pulse-green 2.5s infinite;
+    transition: transform 0.2s;
+  }
+  .whatsapp-float:hover { transform: scale(1.1); }
+  @keyframes pulse-green {
+    0%, 100% { box-shadow: 0 6px 25px rgba(37,211,102,0.45); }
+    50% { box-shadow: 0 6px 40px rgba(37,211,102,0.7), 0 0 0 10px rgba(37,211,102,0.1); }
+  }
+
+  /* ——— SCROLL REVEAL ——— */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ——— MOBILE NAV ——— */
+  .mobile-menu {
+    display: none; position: fixed;
+    top: 65px; left: 0; right: 0;
+    background: rgba(253,248,255,0.97);
+    backdrop-filter: blur(20px);
+    padding: 1.5rem 2rem 2rem;
+    border-bottom: 1px solid rgba(201,168,224,0.2);
+    z-index: 999;
+    flex-direction: column; gap: 1rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    text-decoration: none; color: var(--text-mid);
+    font-weight: 600; font-size: 1rem; padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(201,168,224,0.15);
+  }
+  .mobile-menu a:last-child { border: none; }
+  .mobile-menu .nav-cta {
+    text-align: center; padding: 0.8rem;
+    background: linear-gradient(135deg, var(--lavender-dark), var(--purple-deep)) !important;
+    color: white !important; border-radius: 50px;
+  }
+
+  /* ——— RESPONSIVE ——— */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-visual { order: -1; }
+    .about-float { position: static; margin-top: 1rem; }
+    .privacy-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .hero-stats { gap: 1.5rem; }
+    nav { padding: 0.8rem 1.2rem; }
+    section { padding: 3.5rem 1.2rem; }
+    .booking-form-wrap { padding: 1.5rem 1.2rem; }
+  }
+
+  @media (max-width: 480px) {
+    .trust-bar { gap: 1rem; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding: 1rem 1.2rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .hero-stats { flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <img src="https://i.imgur.com/placeholder.png" alt="Open Soul Logo" onerror="this.style.display='none'" id="navLogo">
+    <span class="nav-logo-text">Open Soul</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#privacy">Privacy</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#booking" class="nav-cta">Book a Session</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#privacy" onclick="toggleMenu()">Privacy</a>
+  <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
+  <a href="#how" onclick="toggleMenu()">How It Works</a>
+  <a href="#booking" class="nav-cta" onclick="toggleMenu()">Book a Session ✦</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">✦ Safe Space for Every Heart ✦</div>
+    <p class="hero-hindi">आप अकेले नहीं हैं — हम यहाँ हैं</p>
+    <h1>Someone Who Will<br><em>Actually Listen</em></h1>
+    <p class="hero-sub">No judgment. No advice unless you want it. Just a real human presence — whenever your mind feels too heavy to carry alone.</p>
+    <p class="hero-sub-hindi">"कभी-कभी सिर्फ सुने जाने की ज़रूरत होती है।"</p>
+    <div class="hero-buttons">
+      <a href="#booking" class="btn-primary">💬 Book a Session</a>
+      <a href="#services" class="btn-secondary">✦ See Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">12+</span>
+        <span class="stat-label">Sessions Done</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Confidential</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">₹99</span>
+        <span class="stat-label">Starting From</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="icon">🔒</span> 100% Confidential</div>
+  <div class="trust-item"><span class="icon">🎥</span> Camera Optional</div>
+  <div class="trust-item"><span class="icon">🇮🇳</span> Hindi & English</div>
+  <div class="trust-item"><span class="icon">💰</span> Starting ₹99</div>
+  <div class="trust-item"><span class="icon">⏰</span> Flexible Timings</div>
+  <div class="trust-item"><span class="icon">🚫</span> No Judgment Ever</div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-card">
+        <div class="about-logo-wrap">
+          <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='130' height='130'><defs><radialGradient id='g' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%23C9A8E0'/><stop offset='100%' stop-color='%23F2C4A0'/></radialGradient></defs><circle cx='65' cy='65' r='65' fill='url(%23g)'/><text x='50%' y='57%' text-anchor='middle' font-size='50' dy='.3em'>🫶</text></svg>" alt="Open Soul">
+        </div>
+        <p class="about-quote">"Aapki baat sunna — yahi mera kaam hai."</p>
+        <p class="about-quote-hindi">आपकी बात सुनना — यही मेरा काम है।</p>
+        <div class="about-float">
+          <span class="about-float-icon">🌙</span>
+          <div class="about-float-text">Available Late Night<span>Raat ko bhi hum hain</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-content reveal">
+      <span class="section-label">Who We Are</span>
+      <h2 class="section-title">A <em>Safe Space</em><br>Built With Heart</h2>
+      <p class="section-hindi">एक ऐसी जगह जहाँ आप खुलकर बोल सकते हैं</p>
+      <p class="section-sub">Open Soul was created for one reason — because sometimes you just need <em>one person</em> who will genuinely listen. No diagnosis. No fixing. Just presence. We serve Indian audiences in both Hindi and English, affordably and with complete privacy.</p>
+
+      <div class="about-feature">
+        <div class="about-feature-icon">🫶</div>
+        <div class="about-feature-body">
+          <h4>Peer Support, Not Therapy</h4>
+          <p>We are trained listeners — not therapists. This is human-to-human support, accessible to everyone. Yeh rishta hai, business nahi.</p>
+        </div>
+      </div>
+      <div class="about-feature">
+        <div class="about-feature-icon">🇮🇳</div>
+        <div class="about-feature-body">
+          <h4>Made for Indian Hearts</h4>
+          <p>We understand the Indian family dynamics, societal pressure, log kya kahenge — all of it. You don't need to translate your feelings here.</p>
+        </div>
+      </div>
+      <div class="about-feature">
+        <div class="about-feature-icon">💸</div>
+        <div class="about-feature-body">
+          <h4>Affordable — Because Everyone Deserves This</h4>
+          <p>Sessions starting at ₹99. Because emotional support should never be a luxury. Sabke liye, sab ke budget mein.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header reveal">
+    <span class="section-label">Our Services</span>
+    <h2 class="section-title">Choose Your <em>Safe Space</em></h2>
+    <p class="section-hindi">अपनी ज़रूरत के हिसाब से सेवा चुनें</p>
+    <p class="section-sub">All services available in Hindi & English. Camera is always optional — your comfort comes first.</p>
+  </div>
+  <div class="services-grid">
+
+    <!-- Service 1 -->
+    <div class="service-card reveal">
+      <span class="service-emoji">💬</span>
+      <div class="service-name">Sunno Session</div>
+      <div class="service-hindi">सुनो सेशन — बस बोलो, हम सुनेंगे</div>
+      <div class="service-duration">⏱ 20 Minutes • Text / Voice</div>
+      <p class="service-desc">A quick emotional release. Share what's on your mind — via text or voice note. Perfect if you just need to be heard quickly.</p>
+      <ul class="service-features">
+        <li>Anonymous text-based sharing</li>
+        <li>Thoughtful, personalized response</li>
+        <li>No camera required</li>
+        <li>Hindi or English</li>
+      </ul>
+      <div class="service-price"><sub>₹</sub>99 <small>per session</small></div>
+      <span class="service-badge">📱 Via DM / WhatsApp</span>
+      <a href="#booking" class="service-btn">Book Now →</a>
+    </div>
+
+    <!-- Service 2 — FEATURED -->
+    <div class="service-card featured reveal">
+      <span class="popular-tag">⭐ Most Popular</span>
+      <span class="service-emoji">🫶</span>
+      <div class="service-name">Heart Talk Session</div>
+      <div class="service-hindi">दिल की बात — पूरे दिल से सुनेंगे</div>
+      <div class="service-duration">⏱ 45 Minutes • Voice / Video</div>
+      <p class="service-desc">Our most chosen session. A real conversation — voice or video call. You talk, we listen. No judgment, no agenda, just you and a safe space.</p>
+      <ul class="service-features">
+        <li>Live voice or video call</li>
+        <li>Camera fully optional (your choice)</li>
+        <li>Completely confidential</li>
+        <li>Listener trained in active listening</li>
+        <li>Follow-up check-in message</li>
+      </ul>
+      <div class="service-price"><sub>₹</sub>299 <small>per session</small></div>
+      <span class="service-badge">📹 Google Meet / WhatsApp Call</span>
+      <a href="#booking" class="service-btn">Book Now →</a>
+    </div>
+
+    <!-- Service 3 -->
+    <div class="service-card reveal">
+      <span class="service-emoji">🌙</span>
+      <div class="service-name">Deep Soul Session</div>
+      <div class="service-hindi">गहरी बात — जब मन बहुत भारी हो</div>
+      <div class="service-duration">⏱ 60–75 Minutes • Voice / Video</div>
+      <p class="service-desc">For when you've been holding too much for too long. A deep, unhurried conversation with full presence. Space to cry, to vent, to just be.</p>
+      <ul class="service-features">
+        <li>Extended listening session</li>
+        <li>Camera optional — completely your call</li>
+        <li>Anonymous confession option</li>
+        <li>No session recording ever</li>
+        <li>Priority scheduling</li>
+      </ul>
+      <div class="service-price"><sub>₹</sub>499 <small>per session</small></div>
+      <span class="service-badge">🔒 100% Private & Secure</span>
+      <a href="#booking" class="service-btn">Book Now →</a>
+    </div>
+
+    <!-- Service 4 -->
+    <div class="service-card reveal">
+      <span class="service-emoji">📦</span>
+      <div class="service-name">Mahina Care Pack</div>
+      <div class="service-hindi">महीना पैक — पूरे महीने साथ</div>
+      <div class="service-duration">⏱ 4 Sessions / Month</div>
+      <p class="service-desc">Consistency is healing. Four sessions spread across the month — build trust, open up gradually, and feel the difference week by week.</p>
+      <ul class="service-features">
+        <li>4 × 45-min Heart Talk sessions</li>
+        <li>WhatsApp check-ins between sessions</li>
+        <li>Flexible rescheduling</li>
+        <li>Priority response within 2 hours</li>
+      </ul>
+      <div class="service-price"><sub>₹</sub>899 <small>per month</small></div>
+      <span class="service-badge">💰 Save ₹297 vs individual sessions</span>
+      <a href="#booking" class="service-btn">Book Now →</a>
+    </div>
+
+    <!-- Service 5 -->
+    <div class="service-card reveal">
+      <span class="service-emoji">🤫</span>
+      <div class="service-name">Anonymous Confession</div>
+      <div class="service-hindi">गुमनाम दिल की बात</div>
+      <div class="service-duration">⏱ Anytime • Text Only</div>
+      <p class="service-desc">Something you've never told anyone. Share it anonymously in writing. We read it, hold space for it, and respond with care — no name required.</p>
+      <ul class="service-features">
+        <li>Completely anonymous text submission</li>
+        <li>No name, no phone number needed</li>
+        <li>Warm, thoughtful written response</li>
+        <li>No camera, no call required</li>
+      </ul>
+      <div class="service-price"><sub>₹</sub>149 <small>per confession</small></div>
+      <span class="service-badge">🕵️ Zero identity required</span>
+      <a href="#booking" class="service-btn">Book Now →</a>
+    </div>
+
+    <!-- Service 6 -->
+    <div class="service-card reveal">
+      <span class="service-emoji">🆘</span>
+      <div class="service-name">SOS Listening</div>
+      <div class="service-hindi">अभी बात करनी है — तुरंत सेशन</div>
+      <div class="service-duration">⏱ Same Day • 30 Min</div>
+      <p class="service-desc">When you can't wait. You're overwhelmed right now and need someone today. We try our best to connect within a few hours of booking.</p>
+      <ul class="service-features">
+        <li>Same-day or next-day session</li>
+        <li>Voice call — camera optional</li>
+        <li>No prior booking needed</li>
+        <li>Urgent emotional support focus</li>
+      </ul>
+      <div class="service-price"><sub>₹</sub>249 <small>per session</small></div>
+      <span class="service-badge">⚡ Available 7 days a week</span>
+      <a href="#booking" class="service-btn">Book Now →</a>
+    </div>
+
+  </div>
+
+  <div class="services-note reveal">
+    <span class="services-note-icon">🎥</span>
+    <div class="services-note-text">
+      <h4>Camera is ALWAYS Optional — Hamesha Aapki Marzi</h4>
+      <p>In every session, you choose whether to keep your camera on or off. Many people prefer to stay off-camera — and that is completely welcome. You can even use a nickname. Your privacy and comfort are our first priority. <em>Aap jaise hain, bilkul waisa — koi pressure nahi.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="privacy" id="privacy">
+  <div class="privacy-inner">
+    <div class="reveal">
+      <span class="section-label">Your Privacy</span>
+      <h2 class="section-title">Your Secrets <em>Stay Here</em></h2>
+      <p class="section-hindi">आपकी बातें — सिर्फ हमारे बीच</p>
+      <p class="section-sub" style="margin-top:0.8rem">We take your trust more seriously than anything else. Here's exactly how we protect you — because you deserve to feel safe before you even speak.</p>
+    </div>
+    <div class="privacy-cards reveal">
+      <div class="privacy-card">
+        <div class="privacy-card-icon">🔒</div>
+        <div>
+          <h4>No Recording, Ever</h4>
+          <p>Sessions are never recorded, saved, or stored. What you say stays between us — period.</p>
+          <p class="hindi-small">कोई भी बातचीत record नहीं होती।</p>
+        </div>
+      </div>
+      <div class="privacy-card">
+        <div class="privacy-card-icon">🎭</div>
+        <div>
+          <h4>Use a Nickname — That's Fine</h4>
+          <p>You don't need to share your real name. A nickname, initials, or "Anonymous" — all welcome.</p>
+          <p class="hindi-small">असली नाम देना ज़रूरी नहीं।</p>
+        </div>
+      </div>
+      <div class="privacy-card">
+        <div class="privacy-card-icon">🎥</div>
+        <div>
+          <h4>Camera Off is Always Okay</h4>
+          <p>Every single session — voice only is perfectly fine. You decide. No pressure, no questions asked.</p>
+          <p class="hindi-small">Camera on रखना ज़रूरी नहीं।</p>
+        </div>
+      </div>
+      <div class="privacy-card">
+        <div class="privacy-card-icon">🤐</div>
+        <div>
+          <h4>Zero Sharing With Anyone</h4>
+          <p>Your story, your struggles — never shared, discussed, or referenced with any third party. Ever.</p>
+          <p class="hindi-small">आपकी बात कहीं नहीं जाएगी।</p>
+        </div>
+      </div>
+      <div class="privacy-card">
+        <div class="privacy-card-icon">📵</div>
+        <div>
+          <h4>No Unsolicited Contact</h4>
+          <p>We never reach out to you unprompted after a session. Your space remains yours.</p>
+          <p class="hindi-small">बिना इजाज़त कोई संपर्क नहीं।</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-header reveal">
+    <span class="section-label">Real Reviews</span>
+    <h2 class="section-title">People Who <em>Felt Heard</em></h2>
+    <p class="section-hindi">उनकी ज़ुबानी जिन्होंने बात की</p>
+  </div>
+  <div class="testimonials-grid">
+
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"I didn't know what to say when I messaged. But they made it so easy. No awkwardness, no judgment — I just talked. It was the first time in months I felt light."</p>
+      <span class="testimonial-hindi">"पहली बार लगा कि कोई सच में सुन रहा है।"</span>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">P</div>
+        <div>
+          <div class="testimonial-name">Priya S.</div>
+          <div class="testimonial-location">Delhi, India</div>
+          <span class="testimonial-badge">Heart Talk Session</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Maine socha tha ki log mere baare mein kya sochenge — but here nobody judges. Mujhe pehli baar aisa laga ki meri feelings valid hain. Bohot shukriya."</p>
+      <span class="testimonial-hindi">"यहाँ कोई judge नहीं करता — यही सबसे बड़ी बात है।"</span>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">R</div>
+        <div>
+          <div class="testimonial-name">Rahul M.</div>
+          <div class="testimonial-location">Mumbai, India</div>
+          <span class="testimonial-badge">Deep Soul Session</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"I was skeptical at first. ₹299 for just talking? But honestly — it was worth every rupee. Having someone fully present, just for me, was something I hadn't experienced before."</p>
+      <span class="testimonial-hindi">"इतने कम दाम में इतना ज़्यादा मिला।"</span>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">A</div>
+        <div>
+          <div class="testimonial-name">Ananya K.</div>
+          <div class="testimonial-location">Bangalore, India</div>
+          <span class="testimonial-badge">Mahina Care Pack</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <p class="anon-note reveal">* Names changed for privacy. Shared with full permission. 🔒</p>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="how-header reveal">
+      <span class="section-label">The Process</span>
+      <h2 class="section-title">How It <em>Works</em></h2>
+      <p class="section-hindi">सेशन बुक करना बहुत आसान है</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Fill the Booking Form</h3>
+          <p class="hindi-step">नीचे दिया फॉर्म भरें</p>
+          <p>Choose your service, preferred date and time, your language (Hindi/English), and whether you'd like camera on or off. No complicated process — takes under 2 minutes.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Receive Confirmation</h3>
+          <p class="hindi-step">WhatsApp पर कन्फर्मेशन मिलेगा</p>
+          <p>We confirm your session within a few hours via WhatsApp or email. You'll receive the payment link and session link together. Simple, no confusion.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Complete Payment</h3>
+          <p class="hindi-step">UPI / Google Pay / PhonePe से payment करें</p>
+          <p>Pay securely via UPI, Google Pay, PhonePe, or bank transfer. All under ₹999. Receipt sent immediately. No hidden charges — ever.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Show Up — Just As You Are</h3>
+          <p class="hindi-step">बस आ जाइए — जैसे भी हैं</p>
+          <p>Join the session at your chosen time. Camera on or off — your choice. No preparation needed. Just come as you are. We'll take it from there.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h3>Feel the Difference</h3>
+          <p class="hindi-step">हल्का महसूस करके जाइए</p>
+          <p>After the session, you'll receive a follow-up check-in message. Many people say they feel lighter after the very first conversation. You deserve that too.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING FORM -->
+<section class="booking" id="booking">
+  <span class="section-label">Book a Session</span>
+  <h2 class="section-title" style="color:white">Start Your <em style="-webkit-text-fill-color:var(--gold)">Journey</em></h2>
+  <p class="section-hindi">अपना सेशन अभी बुक करें</p>
+  <p class="section-sub">Fill in the details below. We'll confirm your session on WhatsApp within a few hours. 🤍</p>
+
+  <div class="booking-form-wrap reveal">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Your Name (or Nickname) *</label>
+        <input type="text" placeholder="Aapka naam ya nickname" id="fname">
+      </div>
+      <div class="form-group">
+        <label>WhatsApp Number *</label>
+        <input type="tel" placeholder="+91 XXXXX XXXXX" id="phone">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="Optional — for confirmation" id="email">
+      </div>
+      <div class="form-group">
+        <label>Your City</label>
+        <input type="text" placeholder="Mumbai, Delhi, etc." id="city">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Choose Service *</label>
+        <select id="service">
+          <option value="">— Select a Service —</option>
+          <option value="sunno">💬 Sunno Session — ₹99 (Text/Voice, 20 min)</option>
+          <option value="heart">🫶 Heart Talk Session — ₹299 (Voice/Video, 45 min)</option>
+          <option value="deep">🌙 Deep Soul Session — ₹499 (Voice/Video, 60–75 min)</option>
+          <option value="mahina">📦 Mahina Care Pack — ₹899 (4 sessions/month)</option>
+          <option value="anon">🤫 Anonymous Confession — ₹149 (Text only)</option>
+          <option value="sos">🆘 SOS Listening — ₹249 (Same-day, 30 min)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Preferred Language *</label>
+        <select id="lang">
+          <option value="">— Select Language —</option>
+          <option value="hindi">हिंदी (Hindi)</option>
+          <option value="english">English</option>
+          <option value="both">Hindi + English (Hinglish)</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Preferred Date *</label>
+        <input type="date" id="date">
+      </div>
+      <div class="form-group">
+        <label>Preferred Time *</label>
+        <select id="time">
+          <option value="">— Select Time Slot —</option>
+          <option>🌅 Morning: 7 AM – 10 AM</option>
+          <option>☀️ Afternoon: 11 AM – 2 PM</option>
+          <option>🌆 Evening: 4 PM – 7 PM</option>
+          <option>🌙 Night: 8 PM – 11 PM</option>
+          <option>🕛 Late Night: 11 PM – 1 AM</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Camera Preference</label>
+        <select id="camera">
+          <option value="off">🚫 Camera OFF (preferred)</option>
+          <option value="on">✅ Camera ON</option>
+          <option value="decide">I'll decide later</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>How did you find us?</label>
+        <select id="source">
+          <option value="">— Optional —</option>
+          <option>Instagram</option>
+          <option>Friend / Family</option>
+          <option>Google Search</option>
+          <option>WhatsApp</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group full">
+      <label>What's on your mind? (Optional — helps us prepare)</label>
+      <textarea placeholder="Thoda batao — kya chal raha hai? (completely optional, no pressure)" id="msg"></textarea>
+    </div>
+    <div class="privacy-check">
+      <input type="checkbox" id="privacyCheck">
+      <label for="privacyCheck">I understand this is a peer support service (not therapy) and I agree that all information shared will remain completely confidential. मैं समझता/समझती हूँ कि यह peer support है, therapy नहीं। 🔒</label>
+    </div>
+    <button class="form-submit" onclick="submitForm()">
+      ✦ Book My Session — Abhi Shuru Karein ✦
+    </button>
+    <p class="booking-note">🔒 Your information is 100% private. We respond within a few hours on WhatsApp.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="faq-header reveal">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Common <em>Questions</em></h2>
+      <p class="section-hindi">अक्सर पूछे जाने वाले सवाल</p>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Is this therapy? Are you a doctor?<span class="faq-hindi">क्या आप therapist हैं?</span></span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">No, we are not therapists or doctors. Open Soul is a peer support and active listening service. We are trained listeners who offer a safe, judgment-free space. If you need clinical help, we will always guide you to appropriate resources. Hum dost hain, doctor nahi — lekin dil se sunne wale hain.</div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Do I have to turn my camera on?<span class="faq-hindi">क्या camera on रखना ज़रूरी है?</span></span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Absolutely not. Camera is 100% optional in every session. Many people prefer to keep it off — and that's completely fine. You can also use a nickname. Your comfort is the only thing that matters. Aap jaise comfortable ho, waisa karo.</div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Will my conversation be shared or recorded?<span class="faq-hindi">क्या मेरी बातें record होती हैं?</span></span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Never. Sessions are never recorded, stored, or shared with anyone. What you say stays between you and your listener. We treat your trust as the most sacred thing in this relationship. Aapki baat — sirf aapki.</div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>How do I pay? Is it safe?<span class="faq-hindi">Payment कैसे करें?</span></span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">We accept UPI, Google Pay, PhonePe, Paytm, and bank transfer. Payment details are shared after booking confirmation on WhatsApp. No advance payment is taken before confirmation. Bilkul safe — koi fraud nahi.</div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>What if I don't know what to say?<span class="faq-hindi">अगर मुझे नहीं पता क्या बोलूँ?</span></span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">That's perfectly okay — and honestly, very common. You can start with "I don't know where to begin" and we'll gently guide the conversation. You don't need to prepare anything. Just show up as you are. "Pata nahi kya bolun" — yahi sahi jagah hai.</div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Can I cancel or reschedule?<span class="faq-hindi">Session reschedule हो सकता है?</span></span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Yes. If you need to reschedule, just let us know at least 2 hours in advance on WhatsApp and we'll find another time. Life happens — we completely understand. Koi tension nahi.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="margin-bottom:0.5rem">
+        <span class="nav-logo-text" style="font-size:1.6rem">Open Soul 🫶</span>
+      </div>
+      <p class="footer-tagline">सुनना — समझना — महसूस करना</p>
+      <p class="footer-desc">A peer support listening service built for Indian hearts. Hindi & English. Affordable. Confidential. Always judgment-free.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com/opensoul.space" class="social-btn" target="_blank">📸</a>
+        <a href="https://wa.me/919999999999" class="social-btn" target="_blank">💬</a>
+        <a href="mailto:opensoul@email.com" class="social-btn">✉️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#booking">Sunno Session — ₹99</a></li>
+        <li><a href="#booking">Heart Talk — ₹299</a></li>
+        <li><a href="#booking">Deep Soul — ₹499</a></li>
+        <li><a href="#booking">Mahina Pack — ₹899</a></li>
+        <li><a href="#booking">Anonymous — ₹149</a></li>
+        <li><a href="#booking">SOS Session — ₹249</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About Open Soul</a></li>
+        <li><a href="#privacy">Our Privacy Promise</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#faq">FAQ / Sawaal</a></li>
+        <li><a href="#booking">Book a Session</a></li>
+        <li><a href="https://instagram.com/opensoul.space" target="_blank">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Open Soul. Made with 🤍 for Indian hearts.</span>
+    <span class="footer-disclaimer">⚠️ Disclaimer: Open Soul is a peer support and active listening service. We are NOT licensed therapists, psychologists, or medical professionals. If you are experiencing a mental health crisis, please contact iCall: 9152987821 or Vandrevala Foundation: 1860-2662-345 (24/7 free helpline).</span>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/919999999999?text=Hi%2C%20I%20want%20to%20book%20a%20session%20at%20Open%20Soul%20🫶" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">💬</a>
+
+<script>
+  // NAVBAR SCROLL
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // MOBILE MENU
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('nav') && !e.target.closest('#mobileMenu')) {
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+  });
+
+  // SCROLL REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // FAQ TOGGLE
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // SET MIN DATE TO TODAY
+  const dateInput = document.getElementById('date');
+  if (dateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+  }
+
+  // FORM SUBMIT
+  function submitForm() {
+    const name = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const service = document.getElementById('service').value;
+    const lang = document.getElementById('lang').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    const privacy = document.getElementById('privacyCheck').checked;
+
+    if (!name || !phone || !service || !lang || !date || !time) {
+      showAlert('⚠️ Please fill in all required fields. Sabhi zaruri fields bharna zaroori hai.', 'error');
+      return;
+    }
+    if (!privacy) {
+      showAlert('🔒 Please check the privacy agreement to proceed.', 'error');
+      return;
+    }
+
+    const camera = document.getElementById('camera').value;
+    const msg = document.getElementById('msg').value;
+    const city = document.getElementById('city').value;
+
+    const whatsappMsg = encodeURIComponent(
+      `🫶 *New Session Booking — Open Soul*\n\n` +
+      `*Name:* ${name}\n` +
+      `*Phone:* ${phone}\n` +
+      `*City:* ${city || 'Not provided'}\n` +
+      `*Service:* ${document.getElementById('service').options[document.getElementById('service').selectedIndex].text}\n` +
+      `*Language:* ${lang}\n` +
+      `*Date:* ${date}\n` +
+      `*Time:* ${time}\n` +
+      `*Camera:* ${camera}\n` +
+      `*Message:* ${msg || 'No message'}\n\n` +
+      `_Sent from opensoul website_ ✦`
+    );
+
+    showAlert('✅ Redirecting to WhatsApp to confirm your booking! Aapka session confirm kiya jayega. 🤍', 'success');
+    setTimeout(() => {
+      window.open(`https://wa.me/919999999999?text=${whatsappMsg}`, '_blank');
+    }, 1200);
+  }
+
+  function showAlert(msg, type) {
+    let alertEl = document.getElementById('formAlert');
+    if (!alertEl) {
+      alertEl = document.createElement('div');
+      alertEl.id = 'formAlert';
+      alertEl.style.cssText = `position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:9999;padding:1rem 2rem;border-radius:50px;font-size:0.88rem;font-weight:700;text-align:center;max-width:90vw;box-shadow:0 8px 30px rgba(0,0,0,0.15);transition:opacity 0.3s;`;
+      document.body.appendChild(alertEl);
+    }
+    alertEl.style.background = type === 'success' ? 'linear-gradient(135deg,#9B72C8,#6B4A9B)' : '#e55';
+    alertEl.style.color = 'white';
+    alertEl.textContent = msg;
+    alertEl.style.opacity = '1';
+    setTimeout(() => { alertEl.style.opacity = '0'; }, 3500);
+  }
+</script>
+</body>
+</html>
